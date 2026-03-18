@@ -500,7 +500,17 @@ export function BrandingKit() {
 
             {/* PowerPoint Slide */}
             <div className="bg-white rounded-lg p-8 shadow-sm border border-[rgb(186,148,207)]/30">
-              <h3 className="text-[rgb(147,112,219)] mb-6">PowerPoint Slide Example</h3>
+              <div className="flex items-center justify-between mb-6"><h3 className="text-[rgb(147,112,219)] mb-6">PowerPoint Slide Example</h3>
+              {/* Integrated Download Button */}
+              <a 
+                href="/assets/nichole-branding-kit.ppt" 
+                download="Nichole-Life-Encourager-Template.ppt"
+                className="flex items-center gap-2 px-4 py-2 bg-[rgb(117,95,163)] text-white rounded-lg hover:bg-[rgb(76,57,145)] transition-colors text-sm"
+              >
+                <Download size={16} />
+                Download Template
+              </a></div>
+              
               <div className="flex justify-center">
                 <div className="w-full max-w-[700px] aspect-video bg-white rounded-lg shadow-lg border border-[rgb(186,148,207)]/20 overflow-hidden">
                   <div className="h-full bg-gradient-to-br from-[rgb(248,245,252)] via-white to-[rgb(238,232,250)] relative">
