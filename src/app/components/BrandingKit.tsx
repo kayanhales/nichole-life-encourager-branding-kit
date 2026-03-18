@@ -96,10 +96,6 @@ export function BrandingKit() {
                 <div className="mb-4 flex items-center justify-center h-[300px]">
                   <Logo variant="full" size={200} />
                 </div>
-                {/* Full Logo Section */}
-                <div style={{ position: 'absolute', left: '-9999px', top: '0' }}>
-                  <Logo variant="full" size={800} id="logo-full" />
-                </div>
                 <h3 className="text-[rgb(117,95,163)] mb-2">Primary Logo</h3>
                 <p className="text-[rgb(117,95,163)] text-sm text-center mb-4">
                   Use for main brand applications
@@ -127,10 +123,6 @@ export function BrandingKit() {
                 <div className="mb-4 flex items-center justify-center h-[300px]">
                   <Logo variant="horizontal" size={100} />
                 </div>
-                {/* Horizontal Logo Section */}
-                <div style={{ position: 'absolute', left: '-9999px', top: '0' }}>
-                  <Logo variant="horizontal" size={800} id="logo-horizontal" />
-                </div>
                 <h3 className="text-[rgb(76,57,145)] mb-2">Horizontal Logo</h3>
                 <p className="text-[rgb(117,95,163)] text-sm text-center mb-4">
                   Use for headers and wide spaces
@@ -157,10 +149,6 @@ export function BrandingKit() {
               <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-[300px]">
                   <Logo variant="icon" size={200} />
-                </div>
-                {/* Icon Only Section */}
-                <div style={{ position: 'absolute', left: '-9999px', top: '0' }}>
-                  <Logo variant="icon" size={800} id="logo-icon" />
                 </div>
                 <h3 className="text-[rgb(117,95,163)] mb-2">Icon Mark</h3>
                 <p className="text-[rgb(117,95,163)] text-sm text-center mb-4">
@@ -632,6 +620,21 @@ export function BrandingKit() {
           </div>
         </section>
       </main>
+
+      {/* Hidden Download Assets - Fixed position is more reliable for JS access */}
+      <div 
+        aria-hidden="true"
+        style={{ 
+          position: 'fixed', 
+          left: '-5000px', 
+          top: 0, 
+          visibility: 'hidden', 
+          pointerEvents: 'none' 
+        }}
+      ><Logo variant="full" size={800} id="logo-full" />
+        <Logo variant="horizontal" size={800} id="logo-horizontal" />
+        <Logo variant="icon" size={800} id="logo-icon" />
+      </div>
 
       {/* Footer */}
       <footer className="bg-white border-t border-[rgb(186,148,207)]/30 mt-16">
