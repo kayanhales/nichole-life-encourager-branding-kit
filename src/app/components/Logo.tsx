@@ -99,6 +99,7 @@ export function Logo({ variant = 'full', size = 200, className = '',id}: LogoPro
   if (variant === 'horizontal') {
     return (
       <svg
+        id={id}
         width={size * 2.5}
         height={size}
         viewBox="0 0 500 200"
@@ -205,6 +206,7 @@ export function Logo({ variant = 'full', size = 200, className = '',id}: LogoPro
   // Full vertical variant
   return (
     <svg
+      id={id}
       width={size}
       height={size * 1.5}
       viewBox="0 0 300 450"
