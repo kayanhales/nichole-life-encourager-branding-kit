@@ -35,33 +35,39 @@ export function BrandingKit() {
   };
 
   const downloadPNG = (variant: 'full' | 'icon' | 'horizontal') => {
-    const svgElement = document.getElementById(`logo-${variant}`);
-    if (svgElement) {
-      const svgData = new XMLSerializer().serializeToString(svgElement);
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
+  const svgElement = document.getElementById(`logo-${variant}`);
+  if (svgElement) {
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    
+    // Create a robust URL for the SVG data
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    
+    img.onload = () => {
+      // Set canvas size to match the high-res SVG size
+      canvas.width = img.width;
+      canvas.height = img.height;
       
-      img.onload = () => {
-        canvas.width = img.width * 2; // 2x for high resolution
-        canvas.height = img.height * 2;
-        ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
-        
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `nichole-life-encourager-${variant}.png`;
-            link.click();
-            URL.revokeObjectURL(url);
-          }
-        });
-      };
-      
-      img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
-    }
-  };
+      // Draw and export
+      ctx?.drawImage(img, 0, 0);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const pngUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = pngUrl;
+          link.download = `nichole-life-encourager-${variant}.png`;
+          link.click();
+          URL.revokeObjectURL(pngUrl);
+        }
+      });
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[rgb(248,245,252)] to-[rgb(238,232,250)]">
@@ -90,8 +96,9 @@ export function BrandingKit() {
                 <div className="mb-4 flex items-center justify-center h-[300px]">
                   <Logo variant="full" size={200} />
                 </div>
-                <div className="hidden">
-                  <Logo variant="full" size={200} className="svg-download" id="logo-full" />
+                {/* Full Logo Section */}
+                <div style={{ position: 'absolute', left: '-9999px', top: '0' }}>
+                  <Logo variant="full" size={800} id="logo-full" />
                 </div>
                 <h3 className="text-[rgb(117,95,163)] mb-2">Primary Logo</h3>
                 <p className="text-[rgb(117,95,163)] text-sm text-center mb-4">
@@ -120,8 +127,9 @@ export function BrandingKit() {
                 <div className="mb-4 flex items-center justify-center h-[300px]">
                   <Logo variant="horizontal" size={100} />
                 </div>
-                <div className="hidden">
-                  <Logo variant="horizontal" size={100} id="logo-horizontal" />
+                {/* Horizontal Logo Section */}
+                <div style={{ position: 'absolute', left: '-9999px', top: '0' }}>
+                  <Logo variant="horizontal" size={800} id="logo-horizontal" />
                 </div>
                 <h3 className="text-[rgb(76,57,145)] mb-2">Horizontal Logo</h3>
                 <p className="text-[rgb(117,95,163)] text-sm text-center mb-4">
@@ -150,8 +158,9 @@ export function BrandingKit() {
                 <div className="mb-4 flex items-center justify-center h-[300px]">
                   <Logo variant="icon" size={200} />
                 </div>
-                <div className="hidden">
-                  <Logo variant="icon" size={200} id="logo-icon" />
+                {/* Icon Only Section */}
+                <div style={{ position: 'absolute', left: '-9999px', top: '0' }}>
+                  <Logo variant="icon" size={800} id="logo-icon" />
                 </div>
                 <h3 className="text-[rgb(117,95,163)] mb-2">Icon Mark</h3>
                 <p className="text-[rgb(117,95,163)] text-sm text-center mb-4">

@@ -2,12 +2,14 @@ interface LogoProps {
   variant?: 'full' | 'icon' | 'horizontal';
   size?: number;
   className?: string;
+  id?: string;
 }
 
-export function Logo({ variant = 'full', size = 200, className = '' }: LogoProps) {
+export function Logo({ variant = 'full', size = 200, className = '',id}: LogoProps) {
   if (variant === 'icon') {
     return (
       <svg
+        id={id}
         width={size}
         height={size}
         viewBox="0 0 200 200"
